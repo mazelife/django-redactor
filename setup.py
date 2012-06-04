@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os import path
+from os import path
 from distutils.core import setup
 
 
