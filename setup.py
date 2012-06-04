@@ -19,7 +19,7 @@ classifiers = [
 ]
 
 root_dir = path.dirname(__file__)
-long_desc = open(root_dir + '/README.rst').read()
+long_desc = open(root_dir + 'README.rst').read()
 
 
 setup(
