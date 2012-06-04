@@ -39,5 +39,14 @@ Django-redactor also includes some some customizations that make it function and
             }
         }
 
+For the sake of convenience, there is also a form field that can be used that accepts the same inputs. This field can be used anywhere ``forms.CharField`` can and accepts the same arguments::
+
+    from redactor.fields import RedactorField
+
+    class MyForm(forms.Form):
+        about_me = RedactorField(in_admin=True, redactor_settings={
+            'overlay': True
+        })
+
 
 Django-Redactor is licensed under a `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_ license.
