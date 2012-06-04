@@ -1,0 +1,2 @@
+include README.rst LICENSE.txt
+recursive-include redactor *.css *.html *.js *.png
