@@ -6,7 +6,7 @@ This package helps integrate the `Redactor <http://redactorjs.com/>`_ Javascript
 
 Example usage:
 
-.. code-block:: python
+.. code:: python
    :emphasize-lines: 4
 
     from django import forms
@@ -18,7 +18,9 @@ Example usage:
         about_me = models.CharField(widget=RedactorEditor())
 
 
-You can also customize any of the Redactor editor's `settings <http://redactorjs.com/docs/settings/>`_ when instantiating the widget::
+You can also customize any of the Redactor editor's `settings <http://redactorjs.com/docs/settings/>`_ when instantiating the widget.
+
+.. code:: python
 
     class MyForm(forms.Form):
         about_me = models.CharField(widget=RedactorEditor(redactor_settings={
@@ -28,7 +30,9 @@ You can also customize any of the Redactor editor's `settings <http://redactorjs
         }))
 
 
-Django-redactor also includes some some customizations that make it function and look better in the Django admin. You should turn those on if you are using this widget in the admin::
+Django-redactor also includes some some customizations that make it function and look better in the Django admin. You should turn those on if you are using this widget in the admin.
+
+.. code:: python
 
     class MyAdmin(admin.ModelAdmin):
 
