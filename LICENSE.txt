@@ -1,0 +1,3 @@
+Like the Redactor library, Django-Redactor is licensed under Creative Commons Attribution-NonCommercial 3.0 license.
+
+A human-readable summary can be found here: http://creativecommons.org/licenses/by-nc/3.0/
