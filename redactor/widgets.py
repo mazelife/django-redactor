@@ -6,10 +6,11 @@ from django.utils import simplejson as json
 class RedactorEditor(Textarea):
     """
     A widget that renders a <textarea> element as a Redactor rich tech editor.
-    
-    It  an be configured via the ``redactor_settings`` keyword argument. See the `API
-    docs <http://redactorjs.com/docs/settings>`_ for available settings::
-    
+
+    It  an be configured via the ``redactor_settings`` keyword argument. See
+    the `API docs <http://redactorjs.com/docs/settings>`_ for available
+    settings::
+
         >>> RedactorEditor(redactor_settings={
             'lang': 'en',
             'toolbar': 'default',
@@ -17,7 +18,7 @@ class RedactorEditor(Textarea):
             'path': False,
             'focus': False,
         })
-    
+
     """
     default_settings = {
         'lang': 'en',
@@ -28,7 +29,6 @@ class RedactorEditor(Textarea):
         'autoresize': True
     }
     script_tag = '<script>Redactor.register(%s);</script>'
-
 
     def __init__(self, attrs=None, in_admin=False, redactor_settings=None):
         super(RedactorEditor, self).__init__(attrs=attrs)
@@ -47,7 +47,7 @@ class RedactorEditor(Textarea):
                 'redactor/css/redactor.css',
             ]
         }
-        
+
         if self.in_admin:
             css['screen'].append('redactor/css/django_admin.css')
         return Media(css=css, js=js)
@@ -57,7 +57,7 @@ class RedactorEditor(Textarea):
         redactor_class = html_class_name and " redactor_content" or "redactor_content"
         html_class_name += redactor_class
         attrs['class'] = html_class_name
-        html =  super(RedactorEditor, self).render(name, value, attrs=attrs)
+        html = super(RedactorEditor, self).render(name, value, attrs=attrs)
         settings = self.redactor_settings or self.default_settings
         settings['in_admin'] = self.in_admin
         html += self.script_tag % json.dumps(settings)
