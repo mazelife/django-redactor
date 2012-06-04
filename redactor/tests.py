@@ -37,12 +37,15 @@ class RedactorTests(unittest.TestCase):
         )
         self.assertTrue(js in html)
         self.assertTrue(el in html)
-        
+        self.assertFalse('django_admin.css' in "".join(form.media.render_css()))
+
         admin_form = MyAdminForm()
         admin_html = admin_form.as_p()
         self.assertTrue('"in_admin": true' in admin_html)
+        self.assertTrue('django_admin.css' in "".join(admin_form.media.render_css()))
 
         spanish_form = MySpanishForm()
         spanish_html = spanish_form.as_p()
         spanish_js = 'Redactor.register({"lang": "es", "in_admin": false});'
         self.assertTrue(spanish_js in spanish_html)
+        self.assertFalse('django_admin.css' in "".join(spanish_form.media.render_css()))        
