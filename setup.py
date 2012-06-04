@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os
+import os import path
 from distutils.core import setup
 
 
@@ -18,6 +18,7 @@ classifiers = [
     "Framework :: Django",
 ]
 
+root_dir = path.dirname(__file__)
 long_desc = open(root_dir + '/README.rst').read()
 
 
@@ -28,7 +29,6 @@ setup(
     author='James Stevenson',
     author_email='james.m.stevenson at gmail dot com',
     license='CC licence, see LICENSE.txt',
-    data_files=data_files,
     packages=['redactor'],
     package_dir={'threespot': 'threespot'},
     description=(
