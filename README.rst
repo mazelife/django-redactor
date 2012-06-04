@@ -7,8 +7,8 @@ This package helps integrate the `Redactor <http://redactorjs.com/>`_ Javascript
 Installation
 ----------------
 
-# Add the ``redactor`` directory to your Python path.
-# Add the ``redactor`` application to your `INSTALLED_APPS <https://docs.djangoproject.com/en/1.4/ref/settings/#installed-apps>`_ setting.
+#. Add the ``redactor`` directory to your Python path.
+#. Add the ``redactor`` application to your `INSTALLED_APPS <https://docs.djangoproject.com/en/1.4/ref/settings/#installed-apps>`_ setting.
 
 The redactor app provides a Django widget called ``RedactorEditor``. It is a drop-in replacement for any ``TextArea`` widget. Example usage::
 
