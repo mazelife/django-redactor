@@ -5,7 +5,9 @@ Django-Redactor
 This package helps integrate the `Redactor <http://redactorjs.com/>`_ Javascript WYSIWYG-editor in Django.
 
 
-Example usage::
+Example usage:
+
+.. code-block:: python
 
     from django import forms
     from django.db import models
