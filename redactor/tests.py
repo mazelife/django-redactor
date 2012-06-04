@@ -2,7 +2,7 @@ import unittest
 
 from django import forms
 
-from redactor import widgets
+from redactor import fields, widgets
 
 
 class MyForm(forms.Form):
@@ -10,20 +10,51 @@ class MyForm(forms.Form):
 
 
 class MyAdminForm(forms.Form):
+    """ Uses a redactor widget."""
     text = forms.CharField(widget=widgets.RedactorEditor(in_admin=True))
 
 
+class MyOtherAdminForm(forms.Form):
+    """ Uses a redactor field."""
+    text = fields.RedactorField(in_admin=True)
+
+
 class MySpanishForm(forms.Form):
+    """ Uses a redactor widget."""
     text = forms.CharField(widget=widgets.RedactorEditor(redactor_settings={
         'lang': 'es'
     }))
 
 
+class MyOtherSpanishForm(forms.Form):
+    """ Uses a redactor field."""
+    text = fields.RedactorField(redactor_settings={
+        'lang': 'es'
+    })
+
+
 class RedactorTests(unittest.TestCase):
 
-    def test_rendering(self):
+    def test_field_rendering(self):
         """
-        Ensure that the form enders as expected.
+        Ensure a widget and a field render the same way.
+        """
+        form_with_widget = MySpanishForm()
+        form_with_field = MyOtherSpanishForm()
+        self.assertEqual(
+            form_with_widget.as_p(),
+            form_with_field.as_p()
+        )
+        form_with_widget = MyAdminForm()
+        form_with_field = MyOtherAdminForm()
+        self.assertEqual(
+            form_with_widget.as_p(),
+            form_with_field.as_p()
+        )
+
+    def test_widget_rendering(self):
+        """
+        Ensure that the form widget renders as expected.
         """
         form = MyForm()
         html = form.as_p()
