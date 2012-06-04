@@ -1,0 +1,10 @@
+.redactor_box {
+    width: 800px;
+}
+.redactor_box.wide {
+    width: 1200px;
+}
+.aligned label.redactor_label {
+    float: none;
+    padding-bottom: 10px;
+}
