@@ -30,9 +30,8 @@ setup(
     author_email='james.m.stevenson at gmail dot com',
     license='CC licence, see LICENSE.txt',
     packages=['redactor'],
-    package_dir={'threespot': 'threespot'},
     description=(
-        'Integrates the Redactor Javascript WYSIWYG editor in Django.'
+        'Integrates the Redactor Javascript WYSIWYG editor with Django.'
     ),
     classifiers=classifiers,
     long_description=long_desc,
