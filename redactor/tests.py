@@ -1,6 +1,8 @@
 import unittest
+from urlparse import urljoin
 
 from django import forms
+from django.conf import settings
 
 from redactor import fields, widgets
 
@@ -21,16 +23,18 @@ class MyOtherAdminForm(forms.Form):
 
 class MySpanishForm(forms.Form):
     """ Uses a redactor widget."""
-    text = forms.CharField(widget=widgets.RedactorEditor(redactor_settings={
-        'lang': 'es'
-    }))
+    text = forms.CharField(widget=widgets.RedactorEditor(
+        redactor_css="styles/bodycopy.css",
+        redactor_settings={'lang': 'es'}
+    ))
 
 
 class MyOtherSpanishForm(forms.Form):
     """ Uses a redactor field."""
-    text = fields.RedactorField(redactor_settings={
-        'lang': 'es'
-    })
+    text = fields.RedactorField(
+        redactor_css="styles/bodycopy.css",
+        redactor_settings={'lang': 'es'}
+    )
 
 
 class RedactorTests(unittest.TestCase):
@@ -68,8 +72,9 @@ class RedactorTests(unittest.TestCase):
         )
         self.assertTrue(js in html)
         self.assertTrue(el in html)
+        self.assertTrue('"in_admin": false' in html)
         self.assertFalse('django_admin.css' in "".join(form.media.render_css()))
-
+        
         admin_form = MyAdminForm()
         admin_html = admin_form.as_p()
         self.assertTrue('"in_admin": true' in admin_html)
@@ -77,6 +82,9 @@ class RedactorTests(unittest.TestCase):
 
         spanish_form = MySpanishForm()
         spanish_html = spanish_form.as_p()
-        spanish_js = 'Redactor.register({"lang": "es", "in_admin": false});'
-        self.assertTrue(spanish_js in spanish_html)
+        self.assertTrue('"lang": "es"' in spanish_html)
+        self.assertTrue('"in_admin": false' in spanish_html)
+        base_url = settings.STATIC_URL = None and settings.MEDIA_URL or settings.STATIC_URL
+        css_url = urljoin(base_url, "styles/bodycopy.css")
+        self.assertTrue('"css": "%s"' % css_url in spanish_html)
         self.assertFalse('django_admin.css' in "".join(spanish_form.media.render_css()))        

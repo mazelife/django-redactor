@@ -5,12 +5,13 @@ from redactor.widgets import RedactorEditor
 class RedactorField(CharField):
     """
     A ``CharField`` whose default widget is  a ``RedactorEditor``.
-    Takes the following two additional args that are passed through to the
+    Takes the following three additional args that are passed through to the
     widget constructor::
     
     class MyForm(forms.Form):
         my_field = RedactorField(
             in_admin=True,
+            redactor_css="styles/bodycopy.css",
             redactor_settings={'lang': 'es'}
         )
     
@@ -20,20 +21,16 @@ class RedactorField(CharField):
 
     def __init__(self, *args, **kwargs):
         widget_kwargs = {}
-        if 'redactor_settings' in kwargs:
-            widget_kwargs['redactor_settings'] = kwargs.pop('redactor_settings')
-        if 'in_admin' in kwargs:
-            widget_kwargs['in_admin'] = kwargs.pop('in_admin')
+        # Remove extra field kwargs: the will be used to instantiate the widget.
+        for extra_kwarg in ('in_admin', 'redactor_css', 'redactor_settings'):
+            if extra_kwarg in kwargs:
+                widget_kwargs[extra_kwarg] = kwargs.pop(extra_kwarg)
 
         super(RedactorField, self).__init__(*args, **kwargs)
         
-        # See if any of the keyword arguments to the constructor need to be
-        # passed into the Widget.
+        # Pass any keyword arguments to the Widget.
         if widget_kwargs:
-            # The parent class' (``CharField``) __init__ has made self.widget an
-            # instance, we need the class again so we can re-instantiate it with
-            # our own arguments.
-            widget = kwargs.get('widget', None) or self.widget.__class__
+            widget = kwargs.get('widget', None) or RedactorEditor
             if isinstance(widget, type):
                 widget = widget(**widget_kwargs)
             if 'localize' in kwargs:

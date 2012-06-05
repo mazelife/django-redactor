@@ -39,14 +39,24 @@ Django-redactor also includes some some customizations that make it function and
             }
         }
 
-For the sake of convenience, there is also a form field that can be used that accepts the same inputs. This field can be used anywhere ``forms.CharField`` can and accepts the same arguments::
+Finally, you can connect a custom CSS file to the editable area of the editor::
+
+    class MyForm(forms.Form):
+        about_me = forms.CharField(widget=RedactorEditor(
+            redactor_css="styles/text.css")
+        )
+
+Paths used to specify CSS can be either relative or absolute. If a path starts with '/', 'http://' or 'https://', it will be interpreted as an absolute path, and left as-is. All other paths will be prepended with the value of the ``STATIC_URL`` setting (or ``MEDIA_URL`` if static is not defined).
+
+For the sake of convenience, there is also a form field that can be used that accepts the same inputs. This field can be used anywhere ``forms.CharField`` can and accepts the same arguments, but always renders a Redactor widget::
 
     from redactor.fields import RedactorField
 
     class MyForm(forms.Form):
-        about_me = RedactorField(in_admin=True, redactor_settings={
-            'overlay': True
-        })
-
+        about_me = RedactorField(
+            in_admin=True,
+            redactor_css="styles/text.css",
+            redactor_settings={'overlay': True}
+        )
 
 Django-Redactor is licensed under a `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_ license.
