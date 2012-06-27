@@ -26,5 +26,5 @@ var Redactor = (function ($) {
             var attrs = arguments.length !== 0 ? arguments[0] : null;
             redactor_attrs.push(attrs);
         }
-    }
+    };
 })(jQuery);

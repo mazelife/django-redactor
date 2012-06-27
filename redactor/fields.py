@@ -2,32 +2,32 @@ from django.forms.fields import CharField
 
 from redactor.widgets import RedactorEditor
 
+
 class RedactorField(CharField):
     """
     A ``CharField`` whose default widget is  a ``RedactorEditor``.
     Takes the following three additional args that are passed through to the
     widget constructor::
-    
+
     class MyForm(forms.Form):
         my_field = RedactorField(
-            in_admin=True,
             redactor_css="styles/bodycopy.css",
             redactor_settings={'lang': 'es'}
         )
-    
+
     """
-    
+
     widget = RedactorEditor
 
     def __init__(self, *args, **kwargs):
         widget_kwargs = {}
         # Remove extra field kwargs: the will be used to instantiate the widget.
-        for extra_kwarg in ('in_admin', 'redactor_css', 'redactor_settings'):
+        for extra_kwarg in ('redactor_css', 'redactor_settings'):
             if extra_kwarg in kwargs:
                 widget_kwargs[extra_kwarg] = kwargs.pop(extra_kwarg)
 
         super(RedactorField, self).__init__(*args, **kwargs)
-        
+
         # Pass any keyword arguments to the Widget.
         if widget_kwargs:
             widget = kwargs.get('widget', None) or RedactorEditor
