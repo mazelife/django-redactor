@@ -10,13 +10,6 @@ var Redactor = (function ($) {
         }
         $("textarea.redactor_content").each(function (i) {
             var settings = redactor_attrs[i];
-            if (settings.in_admin) {
-                // Add a class to the field's label in the Django admin so it can
-                // be styled as well.
-                $(this).parent("div").find("label").addClass("redactor_label");
-            }
-            // Not a real redactor setting, so this can be removed.
-            delete settings.in_admin;
             $(this).redactor(settings);
         });
     });
@@ -27,4 +20,4 @@ var Redactor = (function ($) {
             redactor_attrs.push(attrs);
         }
     };
-})(django.jQuery || jQuery);
+})(jQuery);

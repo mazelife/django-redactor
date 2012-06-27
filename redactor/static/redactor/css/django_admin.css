@@ -1,10 +1,10 @@
 .redactor_box {
-    width: 800px;
+    width: 100%;
 }
 .redactor_box.wide {
-    width: 1200px;
+    width: 100%;
 }
-.aligned label.redactor_label {
+.redactor_fieldset label {
     float: none;
     padding-bottom: 10px;
 }
