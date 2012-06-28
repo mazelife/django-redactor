@@ -15,7 +15,8 @@ class RedactorEditor(Textarea):
 
     ``redactor_settings`` - a dictionary of named settings and values. See the
     Redactor `API docs <http://redactorjs.com/docs/settings>`_ for available
-    settings.
+    settings. If you provide a string instead of a dictionary, it will be used
+    as is.
 
     ``redactor_css`` - a path to a CSS file to include in the editbale content
     region of the widget. Paths used to specify media can be either relative or
@@ -30,11 +31,14 @@ class RedactorEditor(Textarea):
                 redactor_css = 'styles/bodycopy.css',
                 redactor_settings={
                     'lang': 'en',
-                    'toolbar': 'default',
                     'load': True,
                     'path': False,
                     'focus': False,
                 }
+            )
+
+        >>> RedactorEditor(
+                redactor_settings="{lang: 'en'}"
             )
 
     """
@@ -45,7 +49,6 @@ class RedactorEditor(Textarea):
         super(RedactorEditor, self).__init__(attrs=attrs)
         default_settings = {
             'lang': 'en',
-            'toolbar': 'default',
             'load': True,
             'path': False,
             'focus': False,
@@ -85,7 +88,10 @@ class RedactorEditor(Textarea):
         html_class_name += redactor_class
         attrs['class'] = html_class_name
         html = super(RedactorEditor, self).render(name, value, attrs=attrs)
-        html += self.script_tag % json.dumps(self.redactor_settings)
+        if isinstance(self.redactor_settings, basestring):
+            html += self.script_tag % self.redactor_settings.replace('\n', '')
+        else:
+            html += self.script_tag % json.dumps(self.redactor_settings)
         return mark_safe(html)
 
 

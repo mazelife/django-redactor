@@ -4,7 +4,7 @@ from os import path
 from distutils.core import setup
 
 
-version = '1.2'
+version = '1.1'
 
 classifiers = [
     "Development Status :: 4 - Beta",
