@@ -74,7 +74,7 @@ class RedactorTests(unittest.TestCase):
         self.assertTrue(el in html)
         self.assertTrue('"in_admin": false' in html)
         self.assertFalse('django_admin.css' in "".join(form.media.render_css()))
-        
+
         admin_form = MyAdminForm()
         admin_html = admin_form.as_p()
         self.assertTrue('"in_admin": true' in admin_html)
@@ -87,4 +87,4 @@ class RedactorTests(unittest.TestCase):
         base_url = settings.STATIC_URL = None and settings.MEDIA_URL or settings.STATIC_URL
         css_url = urljoin(base_url, "styles/bodycopy.css")
         self.assertTrue('"css": "%s"' % css_url in spanish_html)
-        self.assertFalse('django_admin.css' in "".join(spanish_form.media.render_css()))        
+        self.assertFalse('django_admin.css' in "".join(spanish_form.media.render_css()))
