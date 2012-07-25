@@ -43,7 +43,7 @@ class RedactorEditor(Textarea):
 
     """
 
-    script_tag = '<script>Redactor.register(%s);</script>'
+    script_tag = '<script type="text/javascript">Redactor.register(%s);</script>'
 
     def __init__(self, attrs=None, redactor_css=None, redactor_settings=None):
         super(RedactorEditor, self).__init__(attrs=attrs)
@@ -71,13 +71,13 @@ class RedactorEditor(Textarea):
     @property
     def media(self):
         js = (
-            'redactor/lib/jquery-1.7.min.js',
-            'redactor/redactor.min.js',
-            'redactor/setup.js',
+            'django-redactor/lib/jquery-1.7.min.js',
+            'django-redactor/redactor/redactor.min.js',
+            'django-redactor/redactor/setup.js',
         )
         css = {
             'screen': [
-                'redactor/css/redactor.css',
+                'django-redactor/redactor/css/redactor.css',
             ]
         }
         return Media(css=css, js=js)
@@ -99,14 +99,14 @@ class AdminRedactorEditor(RedactorEditor):
     @property
     def media(self):
         js = (
-            'redactor/lib/jquery-1.7.min.js',
-            'redactor/redactor.min.js',
-            'redactor/setup.js',
+            'django-redactor/lib/jquery-1.7.min.js',
+            'django-redactor/redactor/redactor.min.js',
+            'django-redactor/redactor/setup.js',
         )
         css = {
             'screen': [
-                'redactor/css/redactor.css',
-                'redactor/css/django_admin.css',
+                'django-redactor/redactor/css/redactor.css',
+                'django-redactor/redactor/css/django_admin.css',
             ]
         }
         return Media(css=css, js=js)
