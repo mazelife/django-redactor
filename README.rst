@@ -31,7 +31,7 @@ You can also customize any of the Redactor editor's `settings <http://redactorjs
         }))
 
 
-Django-redactor also includes some some customizations that make it function and look better in the Django admin::
+Django-redactor also includes a widget with some some customizations that make it function and look better in the Django admin::
 
     class MyAdmin(admin.ModelAdmin):
         formfield_overrides = {
