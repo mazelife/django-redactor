@@ -10,6 +10,9 @@ var Redactor = (function ($) {
         }
         $("textarea.redactor_content").each(function (i) {
             var settings = redactor_attrs[i];
+            // Add a class to the field's label in the Django admin so it can
+            // be styled as well.
+            $(this).parent("div").find("label").addClass("redactor_label");
             $(this).redactor(settings);
         });
     });
