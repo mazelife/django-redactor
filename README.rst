@@ -31,11 +31,11 @@ You can also customize any of the Redactor editor's `settings <http://redactorjs
         }))
 
 
-Django-redactor also includes some some customizations that make it function and look better in the Django admin. You should turn those on if you are using this widget in the admin::
+Django-redactor also includes some some customizations that make it function and look better in the Django admin::
 
     class MyAdmin(admin.ModelAdmin):
         formfield_overrides = {
-                'widget': RedactorEditor(in_admin=True)
+                'widget': AdminRedactorEditor()
             }
         }
 
