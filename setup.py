@@ -7,7 +7,7 @@ from distutils.core import setup
 version = '1.2.1'
 
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: Other/Proprietary License",
     "Programming Language :: Python",
@@ -35,7 +35,7 @@ setup(
     ),
     classifiers=classifiers,
     long_description=long_desc,
-    install_requires=['django>=1.3'],
+    install_requires=['django>=1.3.1'],
     include_package_data=True,
     zip_safe=False
 )
