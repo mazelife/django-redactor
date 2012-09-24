@@ -35,8 +35,7 @@ Django-redactor also includes a widget with some some customizations that make i
 
     class MyAdmin(admin.ModelAdmin):
         formfield_overrides = {
-                'widget': AdminRedactorEditor()
-            }
+                models.TextField: {'widget': AdminRedactorEditor},
         }
 
 Finally, you can connect a custom CSS file to the editable area of the editor::
