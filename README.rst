@@ -10,6 +10,9 @@ Installation
 #. Add the ``redactor`` directory to your Python path.
 #. Add the ``redactor`` application to your `INSTALLED_APPS <https://docs.djangoproject.com/en/1.4/ref/settings/#installed-apps>`_ setting.
 
+Usage
+----------------
+
 The redactor app provides a Django widget called ``RedactorEditor``. It is a drop-in replacement for any ``TextArea`` widget. Example usage::
 
     from django import forms
@@ -24,9 +27,9 @@ The redactor app provides a Django widget called ``RedactorEditor``. It is a dro
 You can also customize any of the Redactor editor's `settings <http://redactorjs.com/docs/settings/>`_ when instantiating the widget::
 
     class MyForm(forms.Form):
+    
         about_me = forms.CharField(widget=RedactorEditor(redactor_settings={
             'autoformat': True,
-            'lang': 'es',
             'overlay': False
         }))
 
@@ -57,5 +60,23 @@ For the sake of convenience, there is also a form field that can be used that ac
             redactor_css="styles/text.css",
             redactor_settings={'overlay': True}
         )
+
+Internationalization
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you wish to use Redactor in other languages, you'll need to specify the setting and make sure the correct language file is loaded::
+
+    class MyForm(forms.Form):
+
+        class Media:
+            js = ('django-redactor/redactor/langs/es.js',)
+    
+        about_me = forms.CharField(widget=RedactorEditor(redactor_settings={
+            'autoformat': True,
+            'lang': 'es',
+            'overlay': False
+        }))
+
+
 
 Django-Redactor is licensed under a `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_ license.
