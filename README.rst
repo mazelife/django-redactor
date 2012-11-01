@@ -61,6 +61,17 @@ For the sake of convenience, there is also a form field that can be used that ac
             redactor_settings={'overlay': True}
         )
 
+Templating
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you are using a redactor widget outside the admin, you'll need to be sure that you render `the form's media <https://docs.djangoproject.com/en/dev/topics/forms/media/#media-on-forms>`_. Redactor widgets need to include some CSS and JavaScript to work properly::
+
+    <form>
+        {{ myform.media }}
+        {{ myform.as_p }}
+        <input type="submit"/>
+    </form>
+
 Internationalization
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
