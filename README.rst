@@ -90,4 +90,5 @@ If you wish to use Redactor in other languages, you'll need to specify the setti
 
 
 
-Django-Redactor is licensed under a `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_ license.
+Django-Redactor is licensed under a `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_ license. However, the noncommercial restrictions of the license (e.g., Section 4(b)) are waived for any user who purchases a 
+legitimate commercial license to the redactor.js library. Open source users are still under the noncommercial clause, but legitimate Imperavi license holders are not.
