@@ -75,12 +75,9 @@ If you are using a redactor widget outside the admin, you'll need to be sure tha
 Internationalization
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you wish to use Redactor in other languages, you'll need to specify the setting and make sure the correct language file is loaded::
+If you wish to use Redactor in other languages, you only need to specify the ``lang`` setting. The correct javascript language files will be loaded automatically::
 
     class MyForm(forms.Form):
-
-        class Media:
-            js = ('django-redactor/redactor/langs/es.js',)
     
         about_me = forms.CharField(widget=RedactorEditor(redactor_settings={
             'autoformat': True,
@@ -88,7 +85,8 @@ If you wish to use Redactor in other languages, you'll need to specify the setti
             'overlay': False
         }))
 
-
+.. NOTE::
+   This is a change from version 1.2.1, where the javascript language files needed to be specified by the user.
 
 Django-Redactor is licensed under a `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_ license. However, the noncommercial restrictions of the license (e.g., Section 4(b)) are waived for any user who purchases a 
 legitimate commercial license to the redactor.js library. Open source users are still under the noncommercial clause, but legitimate Imperavi license holders are not.
