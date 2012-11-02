@@ -813,7 +813,7 @@ var RLANG = {
 		setDoc: function(html)
 		{
 			var frameHtml = '<!DOCTYPE html>\n' +
-			'<html><head><link media="all" type="text/css" href="' + this.opts.path + '/css/' + this.opts.css + '" rel="stylesheet"></head>' +
+			'<html><head><link media="all" type="text/css" href="' + this.opts.css + '" rel="stylesheet"></head>' +
 			'<body><div id="page" contenteditable="true" dir="' + this.opts.direction + '">' +
 			html + 
 			'</div></body></html>';
