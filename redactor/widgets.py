@@ -18,7 +18,7 @@ class RedactorEditor(Textarea):
     settings. If you provide a string instead of a dictionary, it will be used
     as is.
 
-    ``redactor_css`` - a path to a CSS file to include in the editbale content
+    ``redactor_css`` - a path to a CSS file to include in the editable content
     region of the widget. Paths used to specify media can be either relative or
     absolute. If a path starts with '/', 'http://' or 'https://', it will be
     interpreted as an absolute path, and left as-is. All other paths will be
@@ -75,6 +75,8 @@ class RedactorEditor(Textarea):
             'django-redactor/redactor/redactor.min.js',
             'django-redactor/redactor/setup.js',
         )
+        if self.redactor_settings['lang'] != 'en':
+            js += ('django-redactor/redactor/langs/%s.js' % self.redactor_settings['lang'],)
         css = {
             'screen': [
                 'django-redactor/redactor/css/redactor.css',
@@ -103,6 +105,8 @@ class AdminRedactorEditor(RedactorEditor):
             'django-redactor/redactor/redactor.min.js',
             'django-redactor/redactor/setup.js',
         )
+        if self.redactor_settings['lang'] != 'en':
+            js += ('django-redactor/redactor/langs/%s.js' % self.redactor_settings['lang'],)
         css = {
             'screen': [
                 'django-redactor/redactor/css/redactor.css',
