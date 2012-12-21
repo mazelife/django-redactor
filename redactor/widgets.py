@@ -54,7 +54,9 @@ class RedactorEditor(Textarea):
             'focus': False,
             'autoresize': True
         }
-        self.redactor_settings = redactor_settings or default_settings
+        if redactor_settings:
+            default_settings.update(redactor_settings)
+        self.redactor_settings = default_settings
         if redactor_css:
             self.redactor_settings['css'] = self.get_redactor_css_absolute_path(redactor_css)
 
