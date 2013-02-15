@@ -73,7 +73,6 @@ class RedactorEditor(Textarea):
     @property
     def media(self):
         js = (
-            'django-redactor/lib/jquery-1.7.min.js',
             'django-redactor/redactor/redactor.min.js',
             'django-redactor/redactor/setup.js',
         )
@@ -103,7 +102,6 @@ class AdminRedactorEditor(RedactorEditor):
     @property
     def media(self):
         js = (
-            'django-redactor/lib/jquery-1.7.min.js',
             'django-redactor/redactor/redactor.min.js',
             'django-redactor/redactor/setup.js',
         )
