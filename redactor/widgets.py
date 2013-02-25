@@ -45,8 +45,9 @@ class RedactorEditor(Textarea):
 
     script_tag = '<script type="text/javascript">Redactor.register(%s);</script>'
 
-    def __init__(self, attrs=None, redactor_css=None, redactor_settings=None):
+    def __init__(self, attrs=None, redactor_css=None, redactor_settings=None, include_jquery=True):
         super(RedactorEditor, self).__init__(attrs=attrs)
+        self.include_jquery = include_jquery
         default_settings = {
             'lang': 'en',
             'load': True,
@@ -60,6 +61,15 @@ class RedactorEditor(Textarea):
         if redactor_css:
             self.redactor_settings['css'] = self.get_redactor_css_absolute_path(redactor_css)
 
+    def _get_js_media(self):
+        js = (
+            'django-redactor/redactor/redactor.min.js',
+            'django-redactor/redactor/setup.js',
+        )
+        if self.include_jquery:
+            js = ('django-redactor/lib/jquery-1.7.min.js',) + js
+        return js
+
     def get_redactor_css_absolute_path(self, path):
         if path.startswith(u'http://') or path.startswith(u'https://') or path.startswith(u'/'):
             return path
@@ -72,11 +82,7 @@ class RedactorEditor(Textarea):
 
     @property
     def media(self):
-        js = (
-            'django-redactor/lib/jquery-1.7.min.js',
-            'django-redactor/redactor/redactor.min.js',
-            'django-redactor/redactor/setup.js',
-        )
+        js = self._get_js_media()
         if self.redactor_settings['lang'] != 'en':
             js += ('django-redactor/redactor/langs/%s.js' % self.redactor_settings['lang'],)
         css = {
@@ -102,11 +108,7 @@ class RedactorEditor(Textarea):
 class AdminRedactorEditor(RedactorEditor):
     @property
     def media(self):
-        js = (
-            'django-redactor/lib/jquery-1.7.min.js',
-            'django-redactor/redactor/redactor.min.js',
-            'django-redactor/redactor/setup.js',
-        )
+        js = self._get_js_media()
         if self.redactor_settings['lang'] != 'en':
             js += ('django-redactor/redactor/langs/%s.js' % self.redactor_settings['lang'],)
         css = {

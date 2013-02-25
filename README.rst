@@ -27,7 +27,7 @@ The redactor app provides a Django widget called ``RedactorEditor``. It is a dro
 You can also customize any of the Redactor editor's `settings <http://redactorjs.com/docs/settings/>`_ when instantiating the widget::
 
     class MyForm(forms.Form):
-    
+
         about_me = forms.CharField(widget=RedactorEditor(redactor_settings={
             'autoformat': True,
             'overlay': False
@@ -61,6 +61,15 @@ For the sake of convenience, there is also a form field that can be used that ac
             redactor_settings={'overlay': True}
         )
 
+jQuery
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The redactor javascript library requires jQuery 1.7 or better to function. By default, jQuery is included as part of the field and widget media. However, this can cause issues where other widgets or forms on a page are using a *different* version of jQuery. It is possible to exclude jQuery from the media of the redactor field and wdiget if you wish to handle JavaScript dependency management yourself::
+
+    class MyForm(forms.Form):
+        about_me = RedactorField(include_jquery=False)
+
+
 Templating
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -78,7 +87,7 @@ Internationalization
 If you wish to use Redactor in other languages, you only need to specify the ``lang`` setting. The correct javascript language files will be loaded automatically::
 
     class MyForm(forms.Form):
-    
+
         about_me = forms.CharField(widget=RedactorEditor(redactor_settings={
             'autoformat': True,
             'lang': 'es',
@@ -88,5 +97,5 @@ If you wish to use Redactor in other languages, you only need to specify the ``l
 .. NOTE::
    This is a change from version 1.2.1, where the javascript language files needed to be specified by the user.
 
-Django-Redactor is licensed under a `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_ license. However, the noncommercial restrictions of the license (e.g., Section 4(b)) are waived for any user who purchases a 
+Django-Redactor is licensed under a `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_ license. However, the noncommercial restrictions of the license (e.g., Section 4(b)) are waived for any user who purchases a
 legitimate commercial license to the redactor.js library. Open source users are still under the noncommercial clause, but legitimate Imperavi license holders are not.

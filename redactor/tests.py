@@ -37,6 +37,11 @@ class MyOtherSpanishForm(forms.Form):
     )
 
 
+class NoJqueryForm(forms.Form):
+    """ Uses a redactor field with no no jQuery in media."""
+    text = forms.CharField(widget=widgets.RedactorEditor(include_jquery=False))
+
+
 class RedactorTests(unittest.TestCase):
 
     def test_field_rendering(self):
@@ -75,7 +80,6 @@ class RedactorTests(unittest.TestCase):
         self.assertFalse('django_admin.css' in "".join(form.media.render_css()))
 
         admin_form = MyAdminForm()
-        admin_html = admin_form.as_p()
         self.assertTrue('django_admin.css' in "".join(admin_form.media.render_css()))
 
         spanish_form = MySpanishForm()
@@ -85,3 +89,10 @@ class RedactorTests(unittest.TestCase):
         css_url = urljoin(base_url, "styles/bodycopy.css")
         self.assertTrue('"css": "%s"' % css_url in spanish_html)
         self.assertFalse('django_admin.css' in "".join(spanish_form.media.render_css()))
+
+        no_jquery_form = NoJqueryForm()
+        jq_scripts = filter(lambda s: "django-redactor/lib/jquery-1.7.min.js" in s, no_jquery_form.media.render_js())
+        self.assertTrue(len(jq_scripts) == 0)
+        yes_jquery_form = MyForm()
+        jq_scripts = filter(lambda s: "django-redactor/lib/jquery-1.7.min.js" in s, yes_jquery_form.media.render_js())
+        self.assertTrue(len(jq_scripts) == 1)
