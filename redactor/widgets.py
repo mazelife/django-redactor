@@ -5,6 +5,8 @@ from django.forms import Media, Textarea
 from django.utils.safestring import mark_safe
 from django.utils import simplejson as json
 
+from .utils import LazyEncoder
+
 
 class RedactorEditor(Textarea):
     """
@@ -101,7 +103,7 @@ class RedactorEditor(Textarea):
         if isinstance(self.redactor_settings, basestring):
             html += self.script_tag % self.redactor_settings.replace('\n', '')
         else:
-            html += self.script_tag % json.dumps(self.redactor_settings)
+            html += self.script_tag % json.dumps(self.redactor_settings, cls=LazyEncoder)
         return mark_safe(html)
 
 
