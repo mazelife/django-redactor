@@ -45,7 +45,10 @@ class RedactorEditor(Textarea):
 
     """
 
-    script_tag = '<script type="text/javascript">Redactor.register(%s);</script>'
+    script_tag = (
+        '<script type="text/javascript">'
+        '$(function() {Redactor.register(%s);});'
+        '</script>')
 
     def __init__(self, attrs=None, redactor_css=None, redactor_settings=None, include_jquery=True):
         super(RedactorEditor, self).__init__(attrs=attrs)
