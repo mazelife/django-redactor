@@ -67,7 +67,7 @@ class RedactorEditor(Textarea):
             'django-redactor/redactor/setup.js',
         )
         if self.include_jquery:
-            js = ('django-redactor/lib/jquery-1.7.min.js',) + js
+            js = ('django-redactor/lib/jquery-1.9.0.min.js',) + js
         return js
 
     def get_redactor_css_absolute_path(self, path):
