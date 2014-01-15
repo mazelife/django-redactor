@@ -72,11 +72,12 @@ class RedactorTests(unittest.TestCase):
             '"focus": false, "path": false});'
         )
         el = (
-            '<textarea id="id_text" class="redactor_content" rows="10" '
-            'cols="40" name="text">'
+            '<textarea class="redactor_content" cols="40" id="id_text" '
+            'name="text" rows="10">'
         )
         self.assertTrue(js in html)
         self.assertTrue(el in html)
+
         self.assertFalse('django_admin.css' in "".join(form.media.render_css()))
 
         admin_form = MyAdminForm()
@@ -91,8 +92,8 @@ class RedactorTests(unittest.TestCase):
         self.assertFalse('django_admin.css' in "".join(spanish_form.media.render_css()))
 
         no_jquery_form = NoJqueryForm()
-        jq_scripts = filter(lambda s: "django-redactor/lib/jquery-1.7.min.js" in s, no_jquery_form.media.render_js())
+        jq_scripts = filter(lambda s: "django-redactor/lib/jquery-1.9.0.min.js" in s, no_jquery_form.media.render_js())
         self.assertTrue(len(jq_scripts) == 0)
         yes_jquery_form = MyForm()
-        jq_scripts = filter(lambda s: "django-redactor/lib/jquery-1.7.min.js" in s, yes_jquery_form.media.render_js())
+        jq_scripts = filter(lambda s: "django-redactor/lib/jquery-1.9.0.min.js" in s, yes_jquery_form.media.render_js())
         self.assertTrue(len(jq_scripts) == 1)

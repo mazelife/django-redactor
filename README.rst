@@ -64,7 +64,7 @@ For the sake of convenience, there is also a form field that can be used that ac
 jQuery
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The redactor javascript library requires jQuery 1.7 or better to function. By default, jQuery is included as part of the field and widget media. However, this can cause issues where other widgets or forms on a page are using a *different* version of jQuery. It is possible to exclude jQuery from the media of the redactor field and wdiget if you wish to handle JavaScript dependency management yourself::
+The redactor javascript library requires jQuery 1.9 or better to function. By default, jQuery is included as part of the field and widget media. However, this can cause issues where other widgets or forms on a page are using a *different* version of jQuery. It is possible to exclude jQuery from the media of the redactor field and wdiget if you wish to handle JavaScript dependency management yourself::
 
     class MyForm(forms.Form):
         about_me = RedactorField(include_jquery=False)
