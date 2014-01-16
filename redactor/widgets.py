@@ -49,6 +49,7 @@ class RedactorEditor(Textarea):
     #    '<script type="text/javascript">'
     #    '$(function() {Redactor.register(%s);});'
     #    '</script>')
+    # NOTE: Got error "Number of registered attributes does not match the widget count." in non-blocking mode.
     script_tag = '<script type="text/javascript">Redactor.register(%s);</script>'
     
     def __init__(self, attrs=None, redactor_css=None, redactor_settings=None, include_jquery=True):
