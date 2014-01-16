@@ -60,6 +60,9 @@ class RedactorEditor(Textarea):
             'load': True,
             'path': False,
             'focus': False,
+            ## TESTING ##
+             'fullpage': True,
+            ## END TESTING ## 
             'autoresize': True
         }
         if redactor_settings:
