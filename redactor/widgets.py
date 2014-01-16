@@ -56,13 +56,10 @@ class RedactorEditor(Textarea):
         super(RedactorEditor, self).__init__(attrs=attrs)
         self.include_jquery = include_jquery
         default_settings = {
-            'lang': 'en',
+            'lang': 'de',
             'load': True,
             'path': False,
             'focus': False,
-            ## TESTING ##
-            'visual': False,
-            ## END TESTING ## 
             'autoresize': True
         }
         if redactor_settings:
