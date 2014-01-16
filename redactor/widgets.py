@@ -61,7 +61,7 @@ class RedactorEditor(Textarea):
             'path': False,
             'focus': False,
             ## TESTING ##
-             'fullpage': True,
+            'visual': False,
             ## END TESTING ## 
             'autoresize': True
         }
