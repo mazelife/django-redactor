@@ -56,7 +56,7 @@ class RedactorEditor(Textarea):
         super(RedactorEditor, self).__init__(attrs=attrs)
         self.include_jquery = include_jquery
         default_settings = {
-            'lang': 'de',
+            'lang': 'en',
             'load': True,
             'path': False,
             'focus': False,
