@@ -5,6 +5,8 @@ from django.forms import Media, Textarea
 from django.utils.safestring import mark_safe
 from django.utils import simplejson as json
 
+from .utils import LazyEncoder
+
 
 class RedactorEditor(Textarea):
     """
@@ -42,9 +44,14 @@ class RedactorEditor(Textarea):
             )
 
     """
-
+     
+    #script_tag = (
+    #    '<script type="text/javascript">'
+    #    '$(function() {Redactor.register(%s);});'
+    #    '</script>')
+    # NOTE: Got error "Number of registered attributes does not match the widget count." in non-blocking mode.
     script_tag = '<script type="text/javascript">Redactor.register(%s);</script>'
-
+    
     def __init__(self, attrs=None, redactor_css=None, redactor_settings=None, include_jquery=True):
         super(RedactorEditor, self).__init__(attrs=attrs)
         self.include_jquery = include_jquery
@@ -101,7 +108,7 @@ class RedactorEditor(Textarea):
         if isinstance(self.redactor_settings, basestring):
             html += self.script_tag % self.redactor_settings.replace('\n', '')
         else:
-            html += self.script_tag % json.dumps(self.redactor_settings)
+            html += self.script_tag % json.dumps(self.redactor_settings, cls=LazyEncoder)
         return mark_safe(html)
 
 
