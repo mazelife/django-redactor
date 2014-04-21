@@ -1,7 +1,10 @@
-from django.utils import simplejson as json
+import json
 
 from django.utils.functional import Promise
-from django.utils.encoding import force_unicode
+try:
+    from django.utils.encoding import force_unicode
+except ImportError:
+    from django.utils.encoding import force_text as force_unicode
 
 class LazyEncoder(json.JSONEncoder):
     """Encodes django's lazy i18n strings.
