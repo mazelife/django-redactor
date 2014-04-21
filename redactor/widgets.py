@@ -1,11 +1,20 @@
-from urlparse import urljoin
+import sys
+
+try:
+    from urlparse import urljoin
+except ImportError:
+    from urllib.parse import urljoin
 
 from django.conf import settings
 from django.forms import Media, Textarea
 from django.utils.safestring import mark_safe
-from django.utils import simplejson as json
+import json
 
 from .utils import LazyEncoder
+
+# Python 3 does not have basestring - https://docs.python.org/3.0/whatsnew/3.0.html#text-vs-data-instead-of-unicode-vs-8-bit
+if sys.version_info > (3, 0):
+    basestring = str
 
 
 class RedactorEditor(Textarea):
