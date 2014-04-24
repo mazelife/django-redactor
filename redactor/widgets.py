@@ -1,14 +1,20 @@
 import sys
 
 try:
+    import json
+except ImportError:
+    from django.utils import simplejson as json
+
+try:
     from urlparse import urljoin
 except ImportError:
     from urllib.parse import urljoin
 
+
+
 from django.conf import settings
 from django.forms import Media, Textarea
 from django.utils.safestring import mark_safe
-import json
 
 from .utils import LazyEncoder
 
@@ -53,14 +59,14 @@ class RedactorEditor(Textarea):
             )
 
     """
-     
+
     #script_tag = (
     #    '<script type="text/javascript">'
     #    '$(function() {Redactor.register(%s);});'
     #    '</script>')
     # NOTE: Got error "Number of registered attributes does not match the widget count." in non-blocking mode.
     script_tag = '<script type="text/javascript">Redactor.register(%s);</script>'
-    
+
     def __init__(self, attrs=None, redactor_css=None, redactor_settings=None, include_jquery=True):
         super(RedactorEditor, self).__init__(attrs=attrs)
         self.include_jquery = include_jquery

@@ -1,4 +1,7 @@
-import json
+try:
+    import json
+except ImportError:
+    from django.utils import simplejson as json
 
 from django.utils.functional import Promise
 try:
