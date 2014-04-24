@@ -9,3 +9,5 @@ v1.2.1, Jul 25, 2012 -- Updated to Redactor 7.7.2, License change.
 v1.2.2, Nov 1, 2012 -- Fixes a bug where adding custom CSS file to the editable area of the editor did not work. Simplifies i18n usage.
 
 v1.2.5, Jan 16, 2014 -- Updates Redactor to 9.1.9
+
+v1.2.6, Apr 24, 2014 -- Python 3 compatibility added, bug with translations fixed.

@@ -4,7 +4,7 @@ from os import path
 from distutils.core import setup
 
 
-version = '1.2.5'
+version = '1.2.6'
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
