@@ -1,6 +1,14 @@
 Django-Redactor
 ================
 
+Project status note
+---------------------
+
+As of April 24, 1014 this project has been forked and renamed `django-redactoreditor <https://github.com/mazelife/django-redactoreditor>`_. All future development will continue there and users should switch to the renamed project when they have the opportunity. Although this is--admittedly--a big change, it's the only way I can see to deal with an issue that has plagued this project from the start: it isn't listed on PyPI because the name "django-redactor" is already taken. This means users cannot simply pip/easy_install the package by name alone.
+
+
+Description
+----------------
 
 This package helps integrate the `Redactor <http://redactorjs.com/>`_ Javascript WYSIWYG-editor in Django.
 
