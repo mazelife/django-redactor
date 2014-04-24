@@ -6,3 +6,4 @@ New due to cherry picking
 
 Daniel Lemos <xspager@gmail.com> (xspager)
 Riley Strong <eponymous@rileystrong.com> (strongriley)
+Ryan Blunden <ryan.blunden@gmail.com> (ryan-blunden)
